@@ -136,9 +136,9 @@ namespace MotoinTool
             return null;
         }
 
-        public override void Stop(AxisBase axisBase)
+        public override void Stop(int axis, int model=0)
         {
-            throw new NotImplementedException();
+             zmcaux.ZAux_Direct_Single_Cancel(Handle, axis, model);
         }
 
         public override bool GetOrgain(AxisBase axis)
@@ -179,6 +179,11 @@ namespace MotoinTool
         public override void SetPulse(AxisInfo axisInfo)
         {
             zmcaux.ZAux_Direct_SetUnits(Handle, axisInfo.AxisNum, axisInfo.AxisPluse);
+        }
+
+        public override void ClearAlarm(int axisNum)
+        {
+            zmcaux.ZAux_BusCmd_DriveClear(Handle, (uint)axisNum, 0);
         }
     }
 }

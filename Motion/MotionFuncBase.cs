@@ -26,7 +26,7 @@ namespace MotoinTool
         public abstract void MoveTo(AxisBase axisBase, float pos);
         public abstract void MoveRelative(AxisBase axisBase, float distance);
         public abstract void Jog(AxisBase axisBase, bool dir);
-        public abstract void Stop(AxisBase axisBase);
+        public abstract void Stop(int axis, int model = 0);
         public abstract string GetInIO(int ioNum, out Io_Status io_Status);
         public abstract string GetOutIO(int ioNum, out Io_Status io_Status);
         public abstract string SetOutIo(int ioNum,Io_Status io_Status);
@@ -36,6 +36,7 @@ namespace MotoinTool
         public abstract bool GetOrgain(AxisBase axis);
         public abstract bool GetAxisEnable(int axis);
         public abstract bool GetAxisStatus(AxisBase axis);
+        public abstract void ClearAlarm(int axisNum);
 
 
     }

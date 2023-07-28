@@ -46,12 +46,20 @@ namespace MotoinTool
         public void InitalAxis()
         {
             //报警清除
-
+            for (int i = 0; i < AxisList.Count; i++)
+            {
+                MotionManage.moManage.motion.ClearAlarm(AxisList[i]._AxisInfo.AxisNum);
+            }
             //设置脉冲当量
             for (int i = 0; i < AxisList.Count; i++)
             {
                 MotionManage.moManage.motion.SetPulse(AxisList[i]._AxisInfo);
             }
+        }
+
+        public void StopAxisStop()
+        {
+
         }
     }
 }
