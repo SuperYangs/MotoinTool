@@ -63,6 +63,11 @@ namespace MotoinTool.Mo_Control
         private void AxisControls_Load(object sender, EventArgs e)
         {
             axisBase = MotionInfo.MoInfo.AxisList.FirstOrDefault(x => x.AxisName == AxisName);
+            RefreshPoint();
+        }
+
+        private void RefreshPoint()
+        {
             Task.Factory.StartNew(() =>
             {
                 while (true)
@@ -76,7 +81,7 @@ namespace MotoinTool.Mo_Control
                     {
                         break;
                     }
-                   
+
                 }
             });
         }
