@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA600C2A-8651-4380-A423-3CD36D61BAA1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MotoinTool</RootNamespace>
+    <AssemblyName>MotoinTool</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Motion\RefreshAxis.cs" />
+    <Compile Include="Mo_Control\AxisControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\AxisControls.Designer.cs">
+      <DependentUpon>AxisControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAxisDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAxisDebug.Designer.cs">
+      <DependentUpon>FormAxisDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAxisInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAxisInfo.Designer.cs">
+      <DependentUpon>FormAxisInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gts_Motion\gtsMotion.cs" />
+    <Compile Include="Info\AxisPara\AxisStatus.cs" />
+    <Compile Include="Info\AxisPara\AxisBase.cs" />
+    <Compile Include="Info\AxisPara\AxisSpeed.cs" />
+    <Compile Include="Info\AxisPara\AxisInfo.cs" />
+    <Compile Include="Info\IO\IoInfon.cs" />
+    <Compile Include="Motion\MotionFuncBase.cs" />
+    <Compile Include="Motion\MotionManage.cs" />
+    <Compile Include="Info\MotionInfo.cs" />
+    <Compile Include="Mo_Control\AxisPoints.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\AxisPoints.Designer.cs">
+      <DependentUpon>AxisPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\CanExecuteBase.cs" />
+    <Compile Include="Mo_Control\ICanExecute.cs" />
+    <Compile Include="Mo_Control\InIo_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\InIo_Control.Designer.cs">
+      <DependentUpon>InIo_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\MultiAxisPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\MultiAxisPoint.Designer.cs">
+      <DependentUpon>MultiAxisPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\OutIO_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\OutIO_Control.Designer.cs">
+      <DependentUpon>OutIO_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\PointBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\SingleAxisPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\SingleAxisPoint.Designer.cs">
+      <DependentUpon>SingleAxisPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\ThreeAxisPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\ThreeAxisPoint.Designer.cs">
+      <DependentUpon>ThreeAxisPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mo_Control\TwoAxisPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mo_Control\TwoAxisPoint.Designer.cs">
+      <DependentUpon>TwoAxisPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Z_Motion\Zmcaux.cs" />
+    <Compile Include="Z_Motion\Z_Motion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApplysTool\ApplysTool.csproj">
+      <Project>{AEF0E93D-A2EC-45B5-B3E8-69F43DED38C6}</Project>
+      <Name>ApplysTool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mo_Control\AxisControls.resx">
+      <DependentUpon>AxisControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAxisDebug.resx">
+      <DependentUpon>FormAxisDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAxisInfo.resx">
+      <DependentUpon>FormAxisInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\AxisPoints.resx">
+      <DependentUpon>AxisPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\InIo_Control.resx">
+      <DependentUpon>InIo_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\MultiAxisPoint.resx">
+      <DependentUpon>MultiAxisPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\OutIO_Control.resx">
+      <DependentUpon>OutIO_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\PointBase.resx">
+      <DependentUpon>PointBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\SingleAxisPoint.resx">
+      <DependentUpon>SingleAxisPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\ThreeAxisPoint.resx">
+      <DependentUpon>ThreeAxisPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mo_Control\TwoAxisPoint.resx">
+      <DependentUpon>TwoAxisPoint.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
