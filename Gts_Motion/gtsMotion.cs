@@ -26,7 +26,22 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
+        public override bool GetAxisEnable(int axis)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool GetAxisStatus(AxisBase axis)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string GetInIO(int ioNum, out Io_Status io_Status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool GetOrgain(AxisBase axis)
         {
             throw new NotImplementedException();
         }

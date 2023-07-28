@@ -31,6 +31,9 @@ namespace MotoinTool
         public abstract bool WaitAxisStop(int axis);
         public abstract string AxisWaitInPlace(int axis, float pos, out bool result);
         public abstract string GetPos(int axis, out float pos);
+        public abstract bool GetOrgain(AxisBase axis);
+        public abstract bool GetAxisEnable(int axis);
+        public abstract bool GetAxisStatus(AxisBase axis);
 
 
     }
