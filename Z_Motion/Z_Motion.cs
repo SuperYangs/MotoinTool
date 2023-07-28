@@ -92,17 +92,20 @@ namespace MotoinTool
 
         public override void Jog(AxisBase axisBase,bool dir)
         {
-            throw new NotImplementedException();
+            SetMoveSpeed(axisBase);
+            zmcaux.ZAux_Direct_Single_Vmove(Handle, axisBase._AxisInfo.AxisNum, dir ? 1 : -1);
         }
 
         public override void MoveRelative(AxisBase axisBase,float distance)
         {
-            throw new NotImplementedException();
+            SetMoveSpeed(axisBase);
+            zmcaux.ZAux_Direct_Single_Move(Handle, axisBase._AxisInfo.AxisNum, distance);
         }
 
         public override void MoveTo(AxisBase axisBase, float pos)
         {
-            throw new NotImplementedException();
+            SetMoveSpeed(axisBase);
+            zmcaux.ZAux_Direct_Single_MoveAbs(Handle, axisBase._AxisInfo.AxisNum, pos);
         }
 
         public override bool WaitAxisStop(int axis)
@@ -140,17 +143,42 @@ namespace MotoinTool
 
         public override bool GetOrgain(AxisBase axis)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override bool GetAxisEnable(int axis)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public override bool GetAxisStatus(AxisBase axis)
         {
-            throw new NotImplementedException();
+            return true;
+        }
+
+        public override void SetMoveSpeed(AxisBase axisBase)
+        {
+            int error = 0;
+            //设置最小速度
+            error = zmcaux.ZAux_Direct_SetLspeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.MinVel);
+     
+            //设置运行速度
+            error = zmcaux.ZAux_Direct_SetSpeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.Vel);
+            
+            //设置加速度
+            error = zmcaux.ZAux_Direct_SetAccel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel);
+            
+            //设置减速度
+            error = zmcaux.ZAux_Direct_SetDecel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.DecVel);
+            
+            //设置S曲线
+            error = zmcaux.ZAux_Direct_SetSramp(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel / axisBase._AxisSpeed.Vel);
+            
+        }
+
+        public override void SetPulse(AxisInfo axisInfo)
+        {
+            zmcaux.ZAux_Direct_SetUnits(Handle, axisInfo.AxisNum, axisInfo.AxisPluse);
         }
     }
 }

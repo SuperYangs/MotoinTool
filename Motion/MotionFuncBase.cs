@@ -20,6 +20,8 @@ namespace MotoinTool
         public abstract bool ConnectCard(string Ip, out IntPtr Handle);
         public abstract void CloseCard();
         public abstract void Inital_IO();
+        public abstract void SetPulse(AxisInfo axisInfo);
+        public abstract void SetMoveSpeed(AxisBase axisBase);
         public abstract void GoHome(AxisBase axisBase);
         public abstract void MoveTo(AxisBase axisBase, float pos);
         public abstract void MoveRelative(AxisBase axisBase, float distance);

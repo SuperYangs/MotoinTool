@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Info\Manage\InitalAxis.cs" />
     <Compile Include="Motion\RefreshAxis.cs" />
     <Compile Include="Mo_Control\AxisControls.cs">
       <SubType>UserControl</SubType>
@@ -72,7 +73,7 @@
     <Compile Include="Info\IO\IoInfon.cs" />
     <Compile Include="Motion\MotionFuncBase.cs" />
     <Compile Include="Motion\MotionManage.cs" />
-    <Compile Include="Info\MotionInfo.cs" />
+    <Compile Include="Info\Manage\MotionInfo.cs" />
     <Compile Include="Mo_Control\AxisPoints.cs">
       <SubType>UserControl</SubType>
     </Compile>

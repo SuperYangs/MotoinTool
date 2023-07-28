@@ -42,5 +42,16 @@ namespace MotoinTool
             XmlSerialization.SerializeXml(OutIoList, path + "OutIoInfo.Xml");
             XmlSerialization.SerializeXml(ActingList, path + "ActingInfo.Xml");
         }
+
+        public void InitalAxis()
+        {
+            //报警清除
+
+            //设置脉冲当量
+            for (int i = 0; i < AxisList.Count; i++)
+            {
+                MotionManage.moManage.motion.SetPulse(AxisList[i]._AxisInfo);
+            }
+        }
     }
 }
