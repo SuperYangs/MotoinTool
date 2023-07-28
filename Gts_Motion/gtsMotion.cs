@@ -16,6 +16,11 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
+        public override void ClearAlarm(int axisNum)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void CloseCard()
         {
             throw new NotImplementedException();
@@ -81,12 +86,22 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
+        public override void SetMoveSpeed(AxisBase axisBase)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string SetOutIo(int ioNum, Io_Status io_Status)
         {
             throw new NotImplementedException();
         }
 
-        public override void Stop(AxisBase axisBase)
+        public override void SetPulse(AxisInfo axisInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Stop(int axis, int model = 0)
         {
             throw new NotImplementedException();
         }
