@@ -121,9 +121,9 @@ namespace MotoinTool.Mo_Control
                 else
                 {
                     var axisBase1 = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == AxisName1);
-                    var axisBase2 = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == AxisName2);
-                    MotionManage.moManage.motion.MoveTo(axisBase1, AxisPoint1);
-                    MotionManage.moManage.motion.MoveTo(axisBase2, AxisPoint2);
+                    var axisBase2 = MotionInfo.MoInfo.AxisList.Find(y => y.AxisName == AxisName2);
+                    MotionManage.moManage.motion.MoveTo(axisBase1, AxisPoint1, axisBase1.AxisDebugSpeed);
+                    MotionManage.moManage.motion.MoveTo(axisBase2, AxisPoint2, axisBase2.AxisDebugSpeed);
                 }
                
             }

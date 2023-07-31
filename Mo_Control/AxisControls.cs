@@ -29,10 +29,20 @@ namespace MotoinTool.Mo_Control
         }
 
 
-        private void btn_HomeMoving_Click(object sender, EventArgs e)
+        private async void btn_HomeMoving_Click(object sender, EventArgs e)
         {
             if (!MovingCheck())
                 return;
+            string result = string.Empty;
+            btn_FwdMoving.Enabled = false;
+            btn_RevMoving.Enabled = false;
+            await Task.Run(() => result = MotionManage.moManage.motion.GoHome(axisBase));
+            btn_FwdMoving.Enabled = true;
+            btn_RevMoving.Enabled = true;
+            if (!string.IsNullOrEmpty(result))
+            {
+                MessageBox.Show($"回零失败:{result}");
+            }
         }
 
         private void btn_FwdMoving_MouseDown(object sender, MouseEventArgs e)
@@ -75,7 +85,15 @@ namespace MotoinTool.Mo_Control
                     Thread.Sleep(5);
                     try
                     {
-                        txt_Points.Invoke(new Action(() => txt_Points.Text = axisBase.AxisPoints.ToString()));
+                        this.Invoke(new Action(() =>
+                        {
+                            txt_Points.Text = axisBase.AxisPoints.ToString();
+                            lbl_Oaigin.BackColor = axisBase.curr_AxisStatus.Origin_Limit ? Color.Green : Color.Gray;
+                            lbl_Fwd.BackColor = axisBase.curr_AxisStatus.Fwd_Limit ? Color.Green : Color.Gray;
+                            lbl_Rev.BackColor = axisBase.curr_AxisStatus.Rev_Limt ? Color.Green : Color.Gray;
+                            lbl_Servo.BackColor = axisBase.curr_AxisStatus.IsError ? Color.Red : Color.Gray;
+                            lbl_Enable.BackColor = axisBase.curr_AxisStatus.IsEnable ? Color.Green : Color.Gray;
+                        }));
                     }
                     catch (Exception)
                     {

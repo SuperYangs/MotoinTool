@@ -17,5 +17,6 @@ namespace MotoinTool
         public float AccVel { get; set; }
         [CategoryAttribute("轴速度"), DescriptionAttribute("减速度")]
         public float DecVel { get; set; }
+        public float Percent { get; set; }
     }
 }

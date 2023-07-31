@@ -60,12 +60,16 @@ namespace MotoinTool.Mo_Control
 
             return result;
         }
-
+        /// <summary>
+        /// 执行需要提前执行的轴
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
         public bool ExecuteFirstAxis(DataGridView dataGridView)
         {
             var firstAxis = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == firstCanAxi);
             var firstPoint = FindPoint(firstCanAxi, dataGridView);
-            MotionManage.moManage.motion.MoveTo(firstAxis, firstPoint);
+            MotionManage.moManage.motion.MoveTo(firstAxis, firstPoint, firstAxis.AxisDebugSpeed);
             MotionManage.moManage.motion.AxisWaitInPlace(firstAxis._AxisInfo.AxisNum, firstPoint, out bool result);
             return result;
         }
@@ -76,7 +80,7 @@ namespace MotoinTool.Mo_Control
             {
                 var axisBase = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == axisName);
                 var axisPoint = FindPoint(axisName, dataGridView);
-                MotionManage.moManage.motion.MoveTo(axisBase, axisPoint);
+                MotionManage.moManage.motion.MoveTo(axisBase, axisPoint, axisBase.AxisDebugSpeed);
             }
         }
 

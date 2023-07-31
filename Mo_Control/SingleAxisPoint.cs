@@ -58,7 +58,7 @@ namespace MotoinTool.Mo_Control
                 return ;
 
             var axisBase = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == AxisName);
-            MotionManage.moManage.motion.MoveTo(axisBase, AxisPoints);
+            MotionManage.moManage.motion.MoveTo(axisBase, AxisPoints, axisBase.AxisDebugSpeed);
         }
 
         private void SingleAxisPoint_Load(object sender, EventArgs e)

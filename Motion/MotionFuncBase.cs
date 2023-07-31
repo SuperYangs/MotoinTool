@@ -21,10 +21,10 @@ namespace MotoinTool
         public abstract void CloseCard();
         public abstract void Inital_IO();
         public abstract void SetPulse(AxisInfo axisInfo);
-        public abstract void SetMoveSpeed(AxisBase axisBase);
-        public abstract void GoHome(AxisBase axisBase);
-        public abstract void MoveTo(AxisBase axisBase, float pos);
-        public abstract void MoveRelative(AxisBase axisBase, float distance);
+        public abstract void SetMoveSpeed(int axis, AxisSpeed speed);
+        public abstract string GoHome(AxisBase axis, double time = 20);
+        public abstract void MoveTo(AxisBase axis, float pos, AxisSpeed speed);
+        public abstract void MoveRelative(AxisBase axisBase, float distance, AxisSpeed speed);
         public abstract void Jog(AxisBase axisBase, bool dir);
         public abstract void Stop(AxisBase axis, int model = 0);
         public abstract string GetInIO(int ioNum, out Io_Status io_Status);
@@ -34,7 +34,7 @@ namespace MotoinTool
         public abstract bool WaitAxisStop(int axis);
         public abstract string AxisWaitInPlace(int axis, float pos, out bool result);
         public abstract string GetPos(int axis, out float pos);
-        public abstract bool GetOrgain(AxisBase axis);
+        public abstract bool GetOrigin(AxisBase axis);
         public abstract bool GetAxisEnable(int axis);
         public abstract void GetAxisStatus(AxisBase axis, ref AxisStatus axisStatus);
         public abstract void ClearAlarm(int axisNum);

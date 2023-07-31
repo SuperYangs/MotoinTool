@@ -35,7 +35,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.propertyGrid_AxisInfo = new System.Windows.Forms.PropertyGrid();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.propertyGrid_AxisSpeed = new System.Windows.Forms.PropertyGrid();
+            this.propertyGrid_AxisRunSpeed = new System.Windows.Forms.PropertyGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_Amend = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,12 +47,18 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.propertyGrid_DebugSpeed = new System.Windows.Forms.PropertyGrid();
+            this.propertyGrid_HomeSpeed = new System.Windows.Forms.PropertyGrid();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -90,6 +96,8 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tabControl1.Location = new System.Drawing.Point(3, 76);
             this.tabControl1.Name = "tabControl1";
@@ -118,22 +126,22 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.propertyGrid_AxisSpeed);
+            this.tabPage2.Controls.Add(this.propertyGrid_AxisRunSpeed);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(383, 467);
+            this.tabPage2.Size = new System.Drawing.Size(428, 467);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "速度参数";
+            this.tabPage2.Text = "运行速度";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // propertyGrid_AxisSpeed
+            // propertyGrid_AxisRunSpeed
             // 
-            this.propertyGrid_AxisSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid_AxisSpeed.Location = new System.Drawing.Point(3, 3);
-            this.propertyGrid_AxisSpeed.Name = "propertyGrid_AxisSpeed";
-            this.propertyGrid_AxisSpeed.Size = new System.Drawing.Size(377, 461);
-            this.propertyGrid_AxisSpeed.TabIndex = 0;
+            this.propertyGrid_AxisRunSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid_AxisRunSpeed.Location = new System.Drawing.Point(3, 3);
+            this.propertyGrid_AxisRunSpeed.Name = "propertyGrid_AxisRunSpeed";
+            this.propertyGrid_AxisRunSpeed.Size = new System.Drawing.Size(422, 461);
+            this.propertyGrid_AxisRunSpeed.TabIndex = 0;
             // 
             // panel2
             // 
@@ -249,6 +257,44 @@
             this.button1.Text = "复 位";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.propertyGrid_DebugSpeed);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(428, 467);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "调试速度";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.propertyGrid_HomeSpeed);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(428, 467);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "回零速度";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // propertyGrid_DebugSpeed
+            // 
+            this.propertyGrid_DebugSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid_DebugSpeed.Location = new System.Drawing.Point(3, 3);
+            this.propertyGrid_DebugSpeed.Name = "propertyGrid_DebugSpeed";
+            this.propertyGrid_DebugSpeed.Size = new System.Drawing.Size(422, 461);
+            this.propertyGrid_DebugSpeed.TabIndex = 1;
+            // 
+            // propertyGrid_HomeSpeed
+            // 
+            this.propertyGrid_HomeSpeed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid_HomeSpeed.Location = new System.Drawing.Point(3, 3);
+            this.propertyGrid_HomeSpeed.Name = "propertyGrid_HomeSpeed";
+            this.propertyGrid_HomeSpeed.Size = new System.Drawing.Size(422, 461);
+            this.propertyGrid_HomeSpeed.TabIndex = 1;
+            // 
             // FormAxisInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -271,6 +317,8 @@
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -284,7 +332,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.PropertyGrid propertyGrid_AxisInfo;
-        private System.Windows.Forms.PropertyGrid propertyGrid_AxisSpeed;
+        private System.Windows.Forms.PropertyGrid propertyGrid_AxisRunSpeed;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btn_Amend;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -296,5 +344,9 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.PropertyGrid propertyGrid_DebugSpeed;
+        private System.Windows.Forms.PropertyGrid propertyGrid_HomeSpeed;
     }
 }

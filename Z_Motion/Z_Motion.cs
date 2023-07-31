@@ -80,9 +80,59 @@ namespace MotoinTool
             
         }
 
-        public override void GoHome(AxisBase axisBase)
+        public override string GoHome(AxisBase axis,double time)
         {
-            throw new NotImplementedException();
+            int homeMode = 0;
+            DateTime startTime = DateTime.Now;
+            if (axis.curr_AxisStatus.Origin_Limit)
+            {
+                homeMode = 4;
+            }
+            else if (axis.curr_AxisStatus.Rev_Limt)
+            {
+                homeMode = 3;
+            }
+            else if (!axis.curr_AxisStatus.Origin_Limit && !axis.curr_AxisStatus.Rev_Limt)
+            {
+                MoveRelative(axis, -3000, axis.AxisDebugSpeed);
+                while (true)
+                {
+                    if (axis.curr_AxisStatus.Origin_Limit)
+                    {
+                        Stop(axis);
+                        homeMode = 4;
+                        break;
+                    }
+                    else if (axis.curr_AxisStatus.Rev_Limt)
+                    {
+                        Stop(axis);
+                        homeMode = 3;
+                        break;
+                    }
+                    if ((DateTime.Now - startTime).TotalMilliseconds>time)
+                    {
+                        return $"回零超出设定时间:{time}";
+                    }
+                }
+            }
+
+            try
+            {
+                SetMoveSpeed(axis._AxisInfo.AxisNum, axis.AxisHomeSpeed);
+                zmcaux.ZAux_Direct_Single_Datum(Handle, axis._AxisInfo.AxisNum, homeMode);
+                WaitAxisStop(axis._AxisInfo.AxisNum);
+                MoveRelative(axis, 6, axis.AxisDebugSpeed);
+                WaitAxisStop(axis._AxisInfo.AxisNum);
+                axis.AxisHomeSpeed.Percent = 0.3f;
+                MoveRelative(axis, 6, axis.AxisHomeSpeed);
+                zmcaux.ZAux_Direct_Single_Datum(Handle, axis._AxisInfo.AxisNum, 4);
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            
         }
 
         public override void Inital_IO()
@@ -92,22 +142,23 @@ namespace MotoinTool
 
         public override void Jog(AxisBase axisBase,bool dir)
         {
-            SetMoveSpeed(axisBase);
+            SetMoveSpeed(axisBase._AxisInfo.AxisNum, axisBase.AxisDebugSpeed);
             zmcaux.ZAux_Direct_Single_Vmove(Handle, axisBase._AxisInfo.AxisNum, dir ? 1 : -1);
+            axisBase.curr_AxisStatus.IsMoving = true;
         }
 
-        public override void MoveRelative(AxisBase axisBase,float distance)
+        public override void MoveRelative(AxisBase axisBase,float distance,AxisSpeed speed)
         {
-            SetMoveSpeed(axisBase);
+            SetMoveSpeed(axisBase._AxisInfo.AxisNum, speed);
             zmcaux.ZAux_Direct_Single_Move(Handle, axisBase._AxisInfo.AxisNum, distance);
             axisBase.curr_AxisStatus.IsMoving = true;
         }
 
-        public override void MoveTo(AxisBase axisBase, float pos)
+        public override void MoveTo(AxisBase axis, float pos, AxisSpeed speed)
         {
-            SetMoveSpeed(axisBase);
-            zmcaux.ZAux_Direct_Single_MoveAbs(Handle, axisBase._AxisInfo.AxisNum, pos);
-            axisBase.curr_AxisStatus.IsMoving = true;
+            SetMoveSpeed(axis._AxisInfo.AxisNum, speed);
+            zmcaux.ZAux_Direct_Single_MoveAbs(Handle, axis._AxisInfo.AxisNum, pos);
+            axis.curr_AxisStatus.IsMoving = true;
         }
 
         public override bool WaitAxisStop(int axis)
@@ -144,7 +195,7 @@ namespace MotoinTool
             axis.curr_AxisStatus.IsMoving = false;
         }
 
-        public override bool GetOrgain(AxisBase axis)
+        public override bool GetOrigin(AxisBase axis)
         {
             uint originSignal = 0;
             zmcaux.ZAux_Direct_GetIn(Handle, axis._AxisInfo.Orgain, ref originSignal);
@@ -192,19 +243,19 @@ namespace MotoinTool
         {
             zmcaux.ZAux_Direct_SetAxisEnable(Handle, ioNum, model);
         }
-        public override void SetMoveSpeed(AxisBase axisBase)
+        public override void SetMoveSpeed(int axis, AxisSpeed speed)
         {
             int error = 0;
             //设置最小速度
-            error = zmcaux.ZAux_Direct_SetLspeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.MinVel);     
+            error = zmcaux.ZAux_Direct_SetLspeed(Handle, axis, speed.MinVel * speed.Percent);     
             //设置运行速度
-            error = zmcaux.ZAux_Direct_SetSpeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.Vel);      
+            error = zmcaux.ZAux_Direct_SetSpeed(Handle, axis, speed.Vel * speed.Percent);      
             //设置加速度
-            error = zmcaux.ZAux_Direct_SetAccel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel);
+            error = zmcaux.ZAux_Direct_SetAccel(Handle, axis, speed.AccVel * speed.Percent);
             //设置减速度
-            error = zmcaux.ZAux_Direct_SetDecel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.DecVel);
+            error = zmcaux.ZAux_Direct_SetDecel(Handle, axis, speed.DecVel * speed.Percent);
             //设置S曲线
-            error = zmcaux.ZAux_Direct_SetSramp(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel / axisBase._AxisSpeed.Vel);
+            error = zmcaux.ZAux_Direct_SetSramp(Handle, axis, (speed.AccVel / speed.Vel) * speed.Percent);
         }
 
         public override void SetPulse(AxisInfo axisInfo)

@@ -38,10 +38,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Points = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_Servo = new System.Windows.Forms.Label();
+            this.lbl_Rev = new System.Windows.Forms.Label();
+            this.lbl_Fwd = new System.Windows.Forms.Label();
+            this.lbl_Oaigin = new System.Windows.Forms.Label();
+            this.lbl_Enable = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -114,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(352, 4);
+            this.label2.Location = new System.Drawing.Point(352, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 3;
@@ -123,7 +124,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(352, 19);
+            this.comboBox1.Location = new System.Drawing.Point(352, 17);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(56, 20);
             this.comboBox1.TabIndex = 4;
@@ -131,7 +132,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(429, 4);
+            this.label3.Location = new System.Drawing.Point(429, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 3;
@@ -140,7 +141,7 @@
             // txt_Points
             // 
             this.txt_Points.Enabled = false;
-            this.txt_Points.Location = new System.Drawing.Point(429, 18);
+            this.txt_Points.Location = new System.Drawing.Point(429, 16);
             this.txt_Points.Name = "txt_Points";
             this.txt_Points.Size = new System.Drawing.Size(56, 21);
             this.txt_Points.TabIndex = 5;
@@ -149,57 +150,68 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lbl_Enable);
+            this.groupBox1.Controls.Add(this.lbl_Servo);
+            this.groupBox1.Controls.Add(this.lbl_Rev);
+            this.groupBox1.Controls.Add(this.lbl_Fwd);
+            this.groupBox1.Controls.Add(this.lbl_Oaigin);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(497, 0);
+            this.groupBox1.Location = new System.Drawing.Point(500, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 40);
+            this.groupBox1.Size = new System.Drawing.Size(210, 40);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "轴状态";
             // 
-            // label7
+            // lbl_Servo
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Gray;
-            this.label7.Location = new System.Drawing.Point(146, 17);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 12);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "伺服";
+            this.lbl_Servo.AutoSize = true;
+            this.lbl_Servo.BackColor = System.Drawing.Color.Gray;
+            this.lbl_Servo.Location = new System.Drawing.Point(173, 18);
+            this.lbl_Servo.Name = "lbl_Servo";
+            this.lbl_Servo.Size = new System.Drawing.Size(29, 12);
+            this.lbl_Servo.TabIndex = 3;
+            this.lbl_Servo.Text = "伺服";
             // 
-            // label6
+            // lbl_Rev
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(99, 17);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "负限位";
+            this.lbl_Rev.AutoSize = true;
+            this.lbl_Rev.BackColor = System.Drawing.Color.Gray;
+            this.lbl_Rev.Location = new System.Drawing.Point(91, 18);
+            this.lbl_Rev.Name = "lbl_Rev";
+            this.lbl_Rev.Size = new System.Drawing.Size(41, 12);
+            this.lbl_Rev.TabIndex = 3;
+            this.lbl_Rev.Text = "负限位";
             // 
-            // label5
+            // lbl_Fwd
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(52, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "正限位";
+            this.lbl_Fwd.AutoSize = true;
+            this.lbl_Fwd.BackColor = System.Drawing.Color.Gray;
+            this.lbl_Fwd.Location = new System.Drawing.Point(44, 18);
+            this.lbl_Fwd.Name = "lbl_Fwd";
+            this.lbl_Fwd.Size = new System.Drawing.Size(41, 12);
+            this.lbl_Fwd.TabIndex = 3;
+            this.lbl_Fwd.Text = "正限位";
             // 
-            // label4
+            // lbl_Oaigin
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(17, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "原点";
+            this.lbl_Oaigin.AutoSize = true;
+            this.lbl_Oaigin.BackColor = System.Drawing.Color.Gray;
+            this.lbl_Oaigin.Location = new System.Drawing.Point(9, 18);
+            this.lbl_Oaigin.Name = "lbl_Oaigin";
+            this.lbl_Oaigin.Size = new System.Drawing.Size(29, 12);
+            this.lbl_Oaigin.TabIndex = 3;
+            this.lbl_Oaigin.Text = "原点";
+            // 
+            // lbl_Enable
+            // 
+            this.lbl_Enable.AutoSize = true;
+            this.lbl_Enable.BackColor = System.Drawing.Color.Gray;
+            this.lbl_Enable.Location = new System.Drawing.Point(138, 18);
+            this.lbl_Enable.Name = "lbl_Enable";
+            this.lbl_Enable.Size = new System.Drawing.Size(29, 12);
+            this.lbl_Enable.TabIndex = 3;
+            this.lbl_Enable.Text = "使能";
             // 
             // AxisControls
             // 
@@ -214,7 +226,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lbl_AxisName);
             this.Name = "AxisControls";
-            this.Size = new System.Drawing.Size(685, 40);
+            this.Size = new System.Drawing.Size(710, 40);
             this.Load += new System.EventHandler(this.AxisControls_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -236,9 +248,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Points;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbl_Fwd;
+        private System.Windows.Forms.Label lbl_Oaigin;
+        private System.Windows.Forms.Label lbl_Rev;
+        private System.Windows.Forms.Label lbl_Servo;
+        private System.Windows.Forms.Label lbl_Enable;
     }
 }

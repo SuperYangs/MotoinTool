@@ -37,9 +37,9 @@ namespace MotoinTool
                 for (int i = 0; i < axisCount; i++)
                 {
                     MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.IsEnable = MotionManage.moManage.motion.GetAxisEnable(MotionInfo.MoInfo.AxisList[i]._AxisInfo.AxisNum);
-                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.Origin_Limit = MotionManage.moManage.motion.GetOrgain(MotionInfo.MoInfo.AxisList[i]);
+                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.Origin_Limit = MotionManage.moManage.motion.GetOrigin(MotionInfo.MoInfo.AxisList[i]);
                     MotionManage.moManage.motion.GetAxisStatus(MotionInfo.MoInfo.AxisList[i], ref MotionInfo.MoInfo.AxisList[i].curr_AxisStatus);
-                    
+                
 
                 }
             }

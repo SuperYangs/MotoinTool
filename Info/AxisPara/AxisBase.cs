@@ -16,7 +16,9 @@ namespace MotoinTool
         
         public AxisInfo _AxisInfo { get; set; }
         
-        public AxisSpeed _AxisSpeed { get; set; }
+        public AxisSpeed AxisRunSpeed { get; set; }
+        public AxisSpeed AxisDebugSpeed { get; set; }
+        public AxisSpeed AxisHomeSpeed { get; set; }
 
         [XmlIgnore]
         public float AxisPoints;
@@ -25,8 +27,10 @@ namespace MotoinTool
         public AxisBase()
         {
             _AxisInfo = new AxisInfo();
-            _AxisSpeed = new AxisSpeed();
+            AxisRunSpeed = new AxisSpeed();
             curr_AxisStatus = new AxisStatus();
+            AxisDebugSpeed = new AxisSpeed();
+            AxisHomeSpeed = new AxisSpeed();
         }
     }
 }

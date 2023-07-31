@@ -30,7 +30,9 @@ namespace MotoinTool
             if(axisBase != null)
             {
                 this.propertyGrid_AxisInfo.SelectedObject = axisBase._AxisInfo;
-                this.propertyGrid_AxisSpeed.SelectedObject = axisBase._AxisSpeed;
+                this.propertyGrid_AxisRunSpeed.SelectedObject = axisBase.AxisRunSpeed;
+                this.propertyGrid_DebugSpeed.SelectedObject = axisBase.AxisDebugSpeed;
+                this.propertyGrid_HomeSpeed.SelectedObject = axisBase.AxisHomeSpeed;
             }
 
         }
@@ -43,10 +45,13 @@ namespace MotoinTool
 
         private void btn_Amend_Click(object sender, EventArgs e)
         {
-            var axisBase = new AxisBase() {
+            var axisBase = new AxisBase() 
+            {
                 AxisName =cmb_SelectAxis.SelectedItem.ToString(),
                 _AxisInfo= propertyGrid_AxisInfo.SelectedObject as AxisInfo,
-                _AxisSpeed= propertyGrid_AxisSpeed.SelectedObject as AxisSpeed
+                AxisRunSpeed= propertyGrid_AxisRunSpeed.SelectedObject as AxisSpeed,
+                AxisDebugSpeed= propertyGrid_DebugSpeed.SelectedObject as AxisSpeed,
+                AxisHomeSpeed= propertyGrid_HomeSpeed.SelectedObject as AxisSpeed,
             };
             if(axisBase != null)
             {
