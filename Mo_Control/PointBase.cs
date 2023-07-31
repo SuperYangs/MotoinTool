@@ -60,6 +60,7 @@ namespace MotoinTool.Mo_Control
 
             return result;
         }
+
         /// <summary>
         /// 执行需要提前执行的轴
         /// </summary>

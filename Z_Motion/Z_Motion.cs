@@ -27,19 +27,8 @@ namespace MotoinTool
 
         public override string AxisWaitInPlace(int axis, float pos, out bool result)
         {
-            int error = 0;
-            int runstate = 0;
-            do
-            {
-                Thread.Sleep(5);
-                error = zmcaux.ZAux_Direct_GetIfIdle(Handle, axis, ref runstate);
-                if (error != 0)
-                {
-                    result = false;
-                    return $"等待轴到位异常，错误码:{error}";
-                }
-
-            } while (runstate == 0);
+            
+            WaitAxisStop(axis);
             string msg = GetPos(axis, out float mPos);
             if(msg!=null)
             {
@@ -163,7 +152,20 @@ namespace MotoinTool
 
         public override bool WaitAxisStop(int axis)
         {
-            throw new NotImplementedException();
+            int error = 0;
+            int runstate = 0;
+
+            do
+            {
+                Thread.Sleep(5);
+                error = zmcaux.ZAux_Direct_GetIfIdle(Handle, axis, ref runstate);
+                if (error != 0)
+                {
+                    System.Windows.Forms.MessageBox.Show($"等待轴到位异常，错误码:{error}");
+                }
+
+            } while (runstate == 0);
+            return runstate == -1;
         }
 
         public override string SetOutIo(int ioNum, Io_Status io_Status)

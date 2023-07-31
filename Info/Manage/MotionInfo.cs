@@ -50,12 +50,13 @@ namespace MotoinTool
             for (int i = 0; i < AxisList.Count; i++)
             {
                 MotionManage.moManage.motion.ClearAlarm(AxisList[i]._AxisInfo.AxisNum);
-                Thread.Sleep(100);
-                MotionManage.moManage.motion.SetAxisEnable(AxisList[i]._AxisInfo.AxisNum, 1);
             }
+            Thread.Sleep(100);
+
             //设置脉冲当量
             for (int i = 0; i < AxisList.Count; i++)
             {
+                MotionManage.moManage.motion.SetAxisEnable(AxisList[i]._AxisInfo.AxisNum, 1);
                 MotionManage.moManage.motion.SetPulse(AxisList[i]._AxisInfo);
             }
         }

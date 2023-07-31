@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\FormIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormIO.Designer.cs">
+      <DependentUpon>FormIO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Info\Manage\InitalAxis.cs" />
     <Compile Include="Motion\RefreshAxis.cs" />
     <Compile Include="Mo_Control\AxisControls.cs">
@@ -133,6 +139,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\FormIO.resx">
+      <DependentUpon>FormIO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mo_Control\AxisControls.resx">
       <DependentUpon>AxisControls.cs</DependentUpon>
     </EmbeddedResource>
