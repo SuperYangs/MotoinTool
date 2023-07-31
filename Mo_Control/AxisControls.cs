@@ -45,7 +45,7 @@ namespace MotoinTool.Mo_Control
 
         private void btn_FwdMoving_MouseUp(object sender, MouseEventArgs e)
         {
-            MotionManage.moManage.motion.Stop(axisBase._AxisInfo.AxisNum);
+            MotionManage.moManage.motion.Stop(axisBase);
         }
 
         private void btn_RevMoving_MouseDown(object sender, MouseEventArgs e)
@@ -57,7 +57,7 @@ namespace MotoinTool.Mo_Control
 
         private void btn_RevMoving_MouseUp(object sender, MouseEventArgs e)
         {
-            MotionManage.moManage.motion.Stop(axisBase._AxisInfo.AxisNum);
+            MotionManage.moManage.motion.Stop(axisBase);
         }
 
         private void AxisControls_Load(object sender, EventArgs e)

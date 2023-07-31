@@ -36,7 +36,7 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
-        public override bool GetAxisStatus(AxisBase axis)
+        public override void GetAxisStatus(AxisBase axis, ref AxisStatus axisStatus)
         {
             throw new NotImplementedException();
         }
@@ -86,6 +86,11 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
+        public override void SetAxisEnable(int ioNum, int model)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void SetMoveSpeed(AxisBase axisBase)
         {
             throw new NotImplementedException();
@@ -101,7 +106,7 @@ namespace MotoinTool
             throw new NotImplementedException();
         }
 
-        public override void Stop(int axis, int model = 0)
+        public override void Stop(AxisBase axis, int model = 0)
         {
             throw new NotImplementedException();
         }

@@ -13,18 +13,20 @@ namespace MotoinTool
     public class AxisBase
     {
         public string AxisName { get; set; }
-        [XmlIgnore]
-        public AxisStatus Curr_AxisStatus { get; set; }
+        
         public AxisInfo _AxisInfo { get; set; }
         
         public AxisSpeed _AxisSpeed { get; set; }
+
         [XmlIgnore]
         public float AxisPoints;
+        [XmlIgnore]
+        public AxisStatus curr_AxisStatus;
         public AxisBase()
         {
             _AxisInfo = new AxisInfo();
             _AxisSpeed = new AxisSpeed();
-            Curr_AxisStatus = new AxisStatus();
+            curr_AxisStatus = new AxisStatus();
         }
     }
 }

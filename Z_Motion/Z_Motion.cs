@@ -100,12 +100,14 @@ namespace MotoinTool
         {
             SetMoveSpeed(axisBase);
             zmcaux.ZAux_Direct_Single_Move(Handle, axisBase._AxisInfo.AxisNum, distance);
+            axisBase.curr_AxisStatus.IsMoving = true;
         }
 
         public override void MoveTo(AxisBase axisBase, float pos)
         {
             SetMoveSpeed(axisBase);
             zmcaux.ZAux_Direct_Single_MoveAbs(Handle, axisBase._AxisInfo.AxisNum, pos);
+            axisBase.curr_AxisStatus.IsMoving = true;
         }
 
         public override bool WaitAxisStop(int axis)
@@ -136,44 +138,73 @@ namespace MotoinTool
             return null;
         }
 
-        public override void Stop(int axis, int model=0)
+        public override void Stop(AxisBase axis, int model = 0)
         {
-             zmcaux.ZAux_Direct_Single_Cancel(Handle, axis, model);
+            zmcaux.ZAux_Direct_Single_Cancel(Handle, axis._AxisInfo.AxisNum, model);
+            axis.curr_AxisStatus.IsMoving = false;
         }
 
         public override bool GetOrgain(AxisBase axis)
         {
-            return true;
+            uint originSignal = 0;
+            zmcaux.ZAux_Direct_GetIn(Handle, axis._AxisInfo.Orgain, ref originSignal);
+            return originSignal == 1;
         }
 
         public override bool GetAxisEnable(int axis)
         {
-            return true;
+            int value = 0;
+            zmcaux.ZAux_Direct_GetAxisEnable(Handle, axis, ref value);
+            return value == 1;
         }
 
-        public override bool GetAxisStatus(AxisBase axis)
+        public override void GetAxisStatus(AxisBase axis, ref AxisStatus axisStatus)
         {
-            return true;
+            int status = 0;
+            zmcaux.ZAux_Direct_GetAxisStatus(Handle, axis._AxisInfo.AxisNum, ref status);  //轴状态
+            switch (status)
+            {
+                case 16:
+                    axisStatus.Fwd_Limit = true;
+                    break;
+                case 32:
+                    axisStatus.Rev_Limt = true;
+                    break;
+                case 48:
+                    axisStatus.Fwd_Limit = true;
+                    axisStatus.Rev_Limt = true;
+                    break;
+                case 4:
+                    axisStatus.IsError = true;
+                    axisStatus.ErrorMsg = "与远程轴通讯出错";
+                    break;
+                case 8:
+                    axisStatus.IsError = true;
+                    axisStatus.ErrorMsg = "驱动器报错";
+                    break;
+                case 4194304:
+                    axisStatus.IsError = true;
+                    axisStatus.ErrorMsg = "伺服报错";
+                    break;
+            }
         }
-
+        public override void SetAxisEnable(int ioNum, int model)
+        {
+            zmcaux.ZAux_Direct_SetAxisEnable(Handle, ioNum, model);
+        }
         public override void SetMoveSpeed(AxisBase axisBase)
         {
             int error = 0;
             //设置最小速度
-            error = zmcaux.ZAux_Direct_SetLspeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.MinVel);
-     
+            error = zmcaux.ZAux_Direct_SetLspeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.MinVel);     
             //设置运行速度
-            error = zmcaux.ZAux_Direct_SetSpeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.Vel);
-            
+            error = zmcaux.ZAux_Direct_SetSpeed(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.Vel);      
             //设置加速度
             error = zmcaux.ZAux_Direct_SetAccel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel);
-            
             //设置减速度
             error = zmcaux.ZAux_Direct_SetDecel(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.DecVel);
-            
             //设置S曲线
             error = zmcaux.ZAux_Direct_SetSramp(Handle, axisBase._AxisInfo.AxisNum, axisBase._AxisSpeed.AccVel / axisBase._AxisSpeed.Vel);
-            
         }
 
         public override void SetPulse(AxisInfo axisInfo)

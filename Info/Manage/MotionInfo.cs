@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MotoinTool
@@ -43,12 +44,14 @@ namespace MotoinTool
             XmlSerialization.SerializeXml(ActingList, path + "ActingInfo.Xml");
         }
 
-        public void InitalAxis()
+        public void InitalAllAxis()
         {
             //报警清除
             for (int i = 0; i < AxisList.Count; i++)
             {
                 MotionManage.moManage.motion.ClearAlarm(AxisList[i]._AxisInfo.AxisNum);
+                Thread.Sleep(100);
+                MotionManage.moManage.motion.SetAxisEnable(AxisList[i]._AxisInfo.AxisNum, 1);
             }
             //设置脉冲当量
             for (int i = 0; i < AxisList.Count; i++)
@@ -57,9 +60,12 @@ namespace MotoinTool
             }
         }
 
-        public void StopAxisStop()
+        public void StopAllxis()
         {
-
+            for (int i = 0; i < AxisList.Count; i++)
+            {
+                MotionManage.moManage.motion.Stop(AxisList[i]);
+            }
         }
     }
 }
