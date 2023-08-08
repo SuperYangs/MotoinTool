@@ -11,6 +11,7 @@ namespace MotoinTool
         public MotionFuncBase motion;
         public MotionManage(CardType cardType)
         {
+            this.cardType = cardType;
             switch (cardType)
             {
                 case CardType.Z_Motion:
@@ -24,7 +25,24 @@ namespace MotoinTool
             }
         }
 
-        public static MotionManage moManage;
+        private CardType cardType;
+        private static MotionManage moManage;
+
+        public static MotionManage GetMotion(CardType cardType)
+        {
+            if (moManage == null)
+            {
+                moManage = new MotionManage(cardType);
+            }
+            return moManage;
+        }
+        public static MotionManage GetMotion() => moManage;
+
+
+        public CardType GetCardType()
+        {
+            return cardType;
+        }
     }
 
 }

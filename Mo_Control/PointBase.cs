@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace MotoinTool.Mo_Control
 {
-    public class PointBase: UserControl,ICanExecute
+    public class PointBase: ControlBase,ICanExecute
     {
-
         public PointBase()
         {
             InitializeComponent();
+            motionManage = MotionManage.GetMotion();
         }
 
         private Label lbl_Name;
@@ -70,8 +70,8 @@ namespace MotoinTool.Mo_Control
         {
             var firstAxis = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == firstCanAxi);
             var firstPoint = FindPoint(firstCanAxi, dataGridView);
-            MotionManage.moManage.motion.MoveTo(firstAxis, firstPoint, firstAxis.AxisDebugSpeed);
-            MotionManage.moManage.motion.AxisWaitInPlace(firstAxis._AxisInfo.AxisNum, firstPoint, out bool result);
+            motionManage.motion.MoveTo(firstAxis, firstPoint, firstAxis.AxisDebugSpeed);
+            motionManage.motion.AxisWaitInPlace(firstAxis._AxisInfo.AxisNum, firstPoint, out bool result);
             return result;
         }
 
@@ -81,7 +81,7 @@ namespace MotoinTool.Mo_Control
             {
                 var axisBase = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == axisName);
                 var axisPoint = FindPoint(axisName, dataGridView);
-                MotionManage.moManage.motion.MoveTo(axisBase, axisPoint, axisBase.AxisDebugSpeed);
+                motionManage.motion.MoveTo(axisBase, axisPoint, axisBase.AxisDebugSpeed);
             }
         }
 

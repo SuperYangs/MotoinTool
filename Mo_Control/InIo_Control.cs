@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace MotoinTool.Mo_Control
 {
-    public partial class InIo_Control : UserControl
+    public partial class InIo_Control : ControlBase
     {
         public InIo_Control()
         {
@@ -34,7 +34,7 @@ namespace MotoinTool.Mo_Control
 
         public override void Refresh()
         {
-            var error = MotionManage.moManage.motion.GetInIO(ioInfo.IoNum, out io_Status);
+            var error = motionManage.motion.GetInIO(ioInfo.IoNum, out io_Status);
             if (string.IsNullOrEmpty(error))
             {
                 switch (io_Status)

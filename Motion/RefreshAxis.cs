@@ -10,10 +10,13 @@ namespace MotoinTool
     public class RefreshAxis
     {
         private int axisCount;
+        private MotionManage motionManage;
         public static RefreshAxis refreshAxis;
+       
         public RefreshAxis()
         {
             axisCount = MotionInfo.MoInfo.AxisList.Count;
+            motionManage = MotionManage.GetMotion();
             Task.Factory.StartNew(() => RefreshPoint());
             Task.Factory.StartNew(() => RefreshStatus());
         }
@@ -24,7 +27,7 @@ namespace MotoinTool
                 Thread.Sleep(5);
                 for (int i = 0; i < axisCount; i++)
                 {
-                    MotionManage.moManage.motion.GetPos(MotionInfo.MoInfo.AxisList[i]._AxisInfo.AxisNum, out MotionInfo.MoInfo.AxisList[i].AxisPoints);
+                    motionManage.motion.GetPos(MotionInfo.MoInfo.AxisList[i]._AxisInfo.AxisNum, out MotionInfo.MoInfo.AxisList[i].AxisPoints);
                 }
             }
         }
@@ -36,9 +39,9 @@ namespace MotoinTool
                 Thread.Sleep(5);
                 for (int i = 0; i < axisCount; i++)
                 {
-                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.IsEnable = MotionManage.moManage.motion.GetAxisEnable(MotionInfo.MoInfo.AxisList[i]._AxisInfo.AxisNum);
-                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.Origin_Limit = MotionManage.moManage.motion.GetOrigin(MotionInfo.MoInfo.AxisList[i]);
-                    MotionManage.moManage.motion.GetAxisStatus(MotionInfo.MoInfo.AxisList[i], ref MotionInfo.MoInfo.AxisList[i].curr_AxisStatus);
+                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.IsEnable = motionManage.motion.GetAxisEnable(MotionInfo.MoInfo.AxisList[i]._AxisInfo.AxisNum);
+                    MotionInfo.MoInfo.AxisList[i].curr_AxisStatus.Origin_Limit = motionManage.motion.GetOrigin(MotionInfo.MoInfo.AxisList[i]);
+                    motionManage.motion.GetAxisStatus(MotionInfo.MoInfo.AxisList[i], ref MotionInfo.MoInfo.AxisList[i].curr_AxisStatus);
                 
 
                 }

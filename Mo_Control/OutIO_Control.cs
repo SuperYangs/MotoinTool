@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MotoinTool.Mo_Control;
+using System;
 using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace MotoinTool
 {
-    public partial class OutIO_Control : UserControl
+    public partial class OutIO_Control : ControlBase
     {
         public OutIO_Control()
         {
@@ -121,14 +122,14 @@ namespace MotoinTool
 
         private bool GetStatus()
         {
-            var error1 = MotionManage.moManage.motion.GetOutIO(ActingInfo.Acting_On.IoNum,
+            var error1 = motionManage.motion.GetOutIO(ActingInfo.Acting_On.IoNum,
                 out status_On);
             if (!string.IsNullOrEmpty(error1))
             {
                 MessageBox.Show(ActingInfo.Acting_On.IoName + error1);
                 return false;
             }
-            var error2 = MotionManage.moManage.motion.GetOutIO(ActingInfo.Acting_Off.IoNum,
+            var error2 = motionManage.motion.GetOutIO(ActingInfo.Acting_Off.IoNum,
                 out status_Off);
             if (!string.IsNullOrEmpty(error2))
             {
@@ -142,16 +143,16 @@ namespace MotoinTool
         public void On()
         {
             if (ActingInfo.Acting_On.IoNum != ActingInfo.Acting_Off.IoNum)
-                MotionManage.moManage.motion.SetOutIo(ActingInfo.Acting_Off.IoNum, Io_Status.OFF);
-            MotionManage.moManage.motion.SetOutIo(ActingInfo.Acting_On.IoNum, Io_Status.ON);
+                motionManage.motion.SetOutIo(ActingInfo.Acting_Off.IoNum, Io_Status.OFF);
+            motionManage.motion.SetOutIo(ActingInfo.Acting_On.IoNum, Io_Status.ON);
             lbl_Color.Text = _On;
             lbl_Color.BackColor = Color.Green;
         }
         public void Off()
         {
-            MotionManage.moManage.motion.SetOutIo(ActingInfo.Acting_On.IoNum, Io_Status.OFF);
+            motionManage.motion.SetOutIo(ActingInfo.Acting_On.IoNum, Io_Status.OFF);
             if (ActingInfo.Acting_On.IoNum != ActingInfo.Acting_Off.IoNum)
-                MotionManage.moManage.motion.SetOutIo(ActingInfo.Acting_Off.IoNum, Io_Status.ON);
+                motionManage.motion.SetOutIo(ActingInfo.Acting_Off.IoNum, Io_Status.ON);
             lbl_Color.Text = _Off;
             lbl_Color.BackColor = Color.Gray;
         }

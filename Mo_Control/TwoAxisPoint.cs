@@ -12,7 +12,7 @@ namespace MotoinTool.Mo_Control
 {
     public partial class TwoAxisPoint : PointBase
     {
-        public TwoAxisPoint()
+        public TwoAxisPoint() : base()
         {
             InitializeComponent();
             dataGridView1.Rows.Add(new object[] { "0.0", "0.0", "读取", "移动" });
@@ -59,8 +59,8 @@ namespace MotoinTool.Mo_Control
 
         public override void ReadPoint()
         {
-            var error1 = MotionManage.moManage.motion.GetPos(axisNum1, out float pos1);
-            var error2 = MotionManage.moManage.motion.GetPos(axisNum2, out float pos2);
+            var error1 = motionManage.motion.GetPos(axisNum1, out float pos1);
+            var error2 = motionManage.motion.GetPos(axisNum2, out float pos2);
             if (!string.IsNullOrEmpty(error1))
             {
                 MessageBox.Show($"{AxisName1}:{error1}");
@@ -80,7 +80,7 @@ namespace MotoinTool.Mo_Control
             base.AxisMove();
             if (isMoving)
             {
-                if(!string.IsNullOrEmpty(firstCanAxi))
+                if (!string.IsNullOrEmpty(firstCanAxi))
                 {
                     if (ExecuteFirstAxis(dataGridView1))
                     {
@@ -122,10 +122,10 @@ namespace MotoinTool.Mo_Control
                 {
                     var axisBase1 = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == AxisName1);
                     var axisBase2 = MotionInfo.MoInfo.AxisList.Find(y => y.AxisName == AxisName2);
-                    MotionManage.moManage.motion.MoveTo(axisBase1, AxisPoint1, axisBase1.AxisDebugSpeed);
-                    MotionManage.moManage.motion.MoveTo(axisBase2, AxisPoint2, axisBase2.AxisDebugSpeed);
+                    motionManage.motion.MoveTo(axisBase1, AxisPoint1, axisBase1.AxisDebugSpeed);
+                    motionManage.motion.MoveTo(axisBase2, AxisPoint2, axisBase2.AxisDebugSpeed);
                 }
-               
+
             }
         }
 

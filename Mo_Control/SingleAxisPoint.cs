@@ -40,7 +40,7 @@ namespace MotoinTool.Mo_Control
         }
         public override void ReadPoint()
         {
-            var error = MotionManage.moManage.motion.GetPos(axisNum, out float pos);
+            var error = motionManage.motion.GetPos(axisNum, out float pos);
             if (string.IsNullOrEmpty(error))
             {
                 AxisPoints = pos;
@@ -58,7 +58,7 @@ namespace MotoinTool.Mo_Control
                 return ;
 
             var axisBase = MotionInfo.MoInfo.AxisList.Find(x => x.AxisName == AxisName);
-            MotionManage.moManage.motion.MoveTo(axisBase, AxisPoints, axisBase.AxisDebugSpeed);
+            motionManage.motion.MoveTo(axisBase, AxisPoints, axisBase.AxisDebugSpeed);
         }
 
         private void SingleAxisPoint_Load(object sender, EventArgs e)

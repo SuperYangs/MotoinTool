@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace MotoinTool.Mo_Control
 {
-    public partial class AxisControls : UserControl
+    public partial class AxisControls : ControlBase
     {
         public event Func<bool> MovingCheck;
-        public AxisControls()
+        public AxisControls():base()
         {
             InitializeComponent();
            
@@ -36,7 +36,7 @@ namespace MotoinTool.Mo_Control
             string result = string.Empty;
             btn_FwdMoving.Enabled = false;
             btn_RevMoving.Enabled = false;
-            await Task.Run(() => result = MotionManage.moManage.motion.GoHome(axisBase));
+            await Task.Run(() => result = motionManage.motion.GoHome(axisBase));
             btn_FwdMoving.Enabled = true;
             btn_RevMoving.Enabled = true;
             if (!string.IsNullOrEmpty(result))
@@ -49,25 +49,25 @@ namespace MotoinTool.Mo_Control
         {
             if(!MovingCheck())
                 return;
-            MotionManage.moManage.motion.Jog(axisBase, true);
+            motionManage.motion.Jog(axisBase, true);
 
         }
 
         private void btn_FwdMoving_MouseUp(object sender, MouseEventArgs e)
         {
-            MotionManage.moManage.motion.Stop(axisBase);
+            motionManage.motion.Stop(axisBase);
         }
 
         private void btn_RevMoving_MouseDown(object sender, MouseEventArgs e)
         {
             if (!MovingCheck())
                 return;
-            MotionManage.moManage.motion.Jog(axisBase, true);
+            motionManage.motion.Jog(axisBase, true);
         }
 
         private void btn_RevMoving_MouseUp(object sender, MouseEventArgs e)
         {
-            MotionManage.moManage.motion.Stop(axisBase);
+            motionManage.motion.Stop(axisBase);
         }
 
         private void AxisControls_Load(object sender, EventArgs e)

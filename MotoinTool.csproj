@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mo_Control\ControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\FormIO.cs">
       <SubType>Form</SubType>
     </Compile>
