@@ -9,9 +9,9 @@ namespace MotoinTool
     public class MotionManage
     {
         public MotionFuncBase motion;
-        public MotionManage(CardType cardType)
+        public MotionManage(CardType card)
         {
-            this.cardType = cardType;
+            cardType = card;
             switch (cardType)
             {
                 case CardType.Z_Motion:
@@ -25,11 +25,12 @@ namespace MotoinTool
             }
         }
 
-        private CardType cardType;
+        private static CardType cardType;
         private static MotionManage moManage;
 
-        public static MotionManage GetMotion(CardType cardType)
+        public static MotionManage GetMotion(CardType card)
         {
+            cardType = card;
             if (moManage == null)
             {
                 moManage = new MotionManage(cardType);
